@@ -2,6 +2,8 @@
 
 > A modern luxury single-page e-commerce website for artisanal organic fragrances, featuring fluid scroll choreography and an interactive small-batch scent collection.
 
+**🌐 Live Demo:** [https://fragria.vercel.app](https://fragria.vercel.app)
+
 ![Fragria Preview](public/images/logo-horizontal.png)
 
 ---
