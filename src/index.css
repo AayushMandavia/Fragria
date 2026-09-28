@@ -77,15 +77,19 @@ ul {
 }
 
 .social-icons-btn {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   background: rgba(255, 255, 255, 0.1);
   transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.social-icons-btn svg {
+  display: block;
 }
 
 .social-icons-btn:hover {

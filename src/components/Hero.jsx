@@ -2,8 +2,9 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Navbar from './Navbar'
 import { perfumes } from '../data/perfumes'
+import { useCart } from '../context/CartContext'
+import { useModal } from '../context/ModalContext'
 import './Hero.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -21,6 +22,8 @@ const sceneVariants = {
 }
 
 const Hero = () => {
+  const { openModal } = useModal()
+  const { openCart, totalCount } = useCart()
   const [[index, direction], setSlide] = useState([0, 1])
   const heroRef = useRef(null)
   const bottleFlyRefs = useRef({})
@@ -140,25 +143,42 @@ const Hero = () => {
         />
       </motion.div>
 
-      <Navbar />
+      {/* Single-Page Minimalist Top Header (Brand Logo + Scent Switcher Pills) */}
+      <header className="hero-header">
+        <a
+          href="#home"
+          className="hero-logo"
+          onClick={(e) => {
+            e.preventDefault()
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}
+          aria-label="Fragria Home"
+        >
+          <img src="/images/logo-horizontal.png" alt="Fragria — A Scent For Every Story" className="hero-logo-img" />
+        </a>
+
+        <button
+          className="hero-cart-btn"
+          onClick={openCart}
+          aria-label={`Shopping Cart, ${totalCount} items`}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <circle cx="10" cy="21" r="1.4" fill="currentColor" />
+            <circle cx="17" cy="21" r="1.4" fill="currentColor" />
+          </svg>
+          <span className="hero-cart-text">Cart</span>
+          {totalCount > 0 && <span className="hero-cart-badge">{totalCount}</span>}
+        </button>
+      </header>
 
       <div className="hero-main">
-        <div className="hero-pills">
-          {perfumes.map((p) => (
-            <button
-              key={p.id}
-              className={`hero-pill ${p.id === current.id ? 'is-current' : ''}`}
-              style={p.id === current.id ? { color: current.bgColor } : undefined}
-              onClick={() => {
-                const target = perfumes.findIndex((pf) => pf.id === p.id)
-                if (target === index) return
-                goTo(target, target > index ? 1 : -1)
-              }}
-            >
-              {p.tag}
-            </button>
-          ))}
-        </div>
 
         <div className="hero-body">
           <motion.div
@@ -182,10 +202,16 @@ const Hero = () => {
               nature&apos;s purest essence to you.
             </motion.p>
             <div className="hero-actions">
-              <button className="btn btn-cream" style={{ color: current.bgColor }}>
+              <button
+                className="btn btn-cream"
+                style={{ color: current.bgColor }}
+                onClick={() => {
+                  const el = document.getElementById('best-sellers')
+                  if (el) el.scrollIntoView({ behavior: 'smooth' })
+                }}
+              >
                 Shop Now
               </button>
-              <button className="btn btn-outline">Learn More</button>
             </div>
 
             <div className="hero-nav">
@@ -245,7 +271,15 @@ const Hero = () => {
             </div>
 
             <div className="hero-badges">
-              <div className={`hero-badge ${current.accent === 'purple' ? 'is-purple' : ''}`}>
+              <div
+                className={`hero-badge ${current.accent === 'purple' ? 'is-purple' : ''}`}
+                onClick={() => {
+                  const el = document.getElementById('benefits')
+                  if (el) el.scrollIntoView({ behavior: 'smooth' })
+                }}
+                style={{ cursor: 'pointer' }}
+                title="View organic credentials"
+              >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                   <path d="M4 20c0-8 6-14 14-14 0 8-6 14-14 14Z" className="hero-badge-icon-leaf" />
                 </svg>
@@ -255,7 +289,15 @@ const Hero = () => {
                   Organic
                 </span>
               </div>
-              <div className={`hero-badge ${current.accent === 'purple' ? 'is-purple' : ''}`}>
+              <div
+                className={`hero-badge ${current.accent === 'purple' ? 'is-purple' : ''}`}
+                onClick={() => {
+                  const el = document.getElementById('benefits')
+                  if (el) el.scrollIntoView({ behavior: 'smooth' })
+                }}
+                style={{ cursor: 'pointer' }}
+                title="View essential oil benefits"
+              >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                   <path
                     d="M12 3c3.5 4 6 7.4 6 10.5A6 6 0 1 1 6 13.5C6 10.4 8.5 7 12 3Z"

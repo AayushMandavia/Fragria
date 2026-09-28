@@ -42,46 +42,120 @@
   opacity: 0.35;
 }
 
+.hero-header {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 36px 48px 12px;
+}
+
+.hero-logo {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.hero-logo:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+.hero-logo-img {
+  height: 52px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45));
+}
+
 .hero-main {
   position: relative;
   z-index: 5;
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
-  padding-top: 24px;
+  padding-top: 16px;
 }
 
-.hero-pills {
-  position: absolute;
-  top: 0;
-  right: 48px;
-  z-index: 15;
-  display: flex;
-  gap: 8px;
-}
-
-.hero-pill {
-  background: rgba(255, 255, 255, 0.16);
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.68rem;
-  letter-spacing: 0.02em;
-  height: 38px;
-  padding: 0 16px;
+.hero-cart-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 42px;
+  padding: 0 20px 0 16px;
   border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.22),
+    0 0 20px rgba(224, 169, 81, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.38);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+  user-select: none;
+}
+
+.hero-cart-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(224, 169, 81, 0.55);
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.32),
+    0 0 28px rgba(224, 169, 81, 0.28),
+    inset 0 1px 2px rgba(255, 255, 255, 0.55);
+}
+
+.hero-cart-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.hero-cart-btn svg {
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.hero-cart-btn:hover svg {
+  transform: scale(1.08);
+}
+
+.hero-cart-text {
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.hero-cart-badge {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2ec4b6 0%, #1e8278 100%);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hero-pill.is-current {
-  background: #fff;
-  box-shadow: var(--shadow-md);
-}
-
-.hero-pill:hover {
-  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(46, 196, 182, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .hero-body {
@@ -331,8 +405,15 @@
     padding-bottom: 24px;
   }
 
+  .hero-header {
+    padding: 20px 24px 8px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .hero-main {
-    padding-top: 88px;
+    padding-top: 16px;
   }
 
   .hero-body {
@@ -353,12 +434,6 @@
 
   .hero-actions {
     justify-content: center;
-  }
-
-  .hero-pills {
-    top: 4px;
-    right: 50%;
-    translate: 50% 0;
   }
 
   .hero-right {

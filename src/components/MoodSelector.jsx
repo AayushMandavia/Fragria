@@ -80,7 +80,7 @@ const MoodSelector = () => {
   }, [])
 
   return (
-    <section className={`mood-selector ${inView ? 'is-in-view' : ''}`} ref={sectionRef}>
+    <section className={`mood-selector ${inView ? 'is-in-view' : ''}`} id="moods" ref={sectionRef}>
       <svg
         className="mood-selector-top-wave"
         viewBox="0 0 1440 100"

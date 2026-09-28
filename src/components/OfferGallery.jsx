@@ -5,7 +5,7 @@ const LEFT_CARDS = [
   {
     image: '/people/d492f5583260f1fcab1978a61a8cbd2d.jpg',
     offer: '20% Off First Order',
-    sub: 'Code FRUITIVO20',
+    sub: 'Code FRAGRIA20',
   },
   {
     image: '/people/7d555b95ffefb9fc9c5f64c340e77b87.jpg',
@@ -64,7 +64,7 @@ const OfferGallery = () => {
   ])
 
   return (
-    <section className="offer-gallery" ref={sectionRef}>
+    <section className="offer-gallery" id="offers" ref={sectionRef}>
       <svg
         className="offer-gallery-top-wave"
         viewBox="0 0 1440 100"

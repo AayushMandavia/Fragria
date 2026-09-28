@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { perfumes } from '../data/perfumes'
+import { useModal } from '../context/ModalContext'
 import SocialIcons from './SocialIcons'
 import useReveal from '../lib/useReveal'
 import './Footer.css'
@@ -7,6 +8,8 @@ import './Footer.css'
 const Footer = () => {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const { openModal } = useModal()
+
   const sectionRef = useReveal([
     { selector: '.footer-newsletter-inner', y: 40, duration: 0.8, start: 'top 92%' },
     { selector: '.footer-col', y: 40, duration: 0.7, stagger: 0.1, start: 'top 92%' },
@@ -19,7 +22,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="footer" ref={sectionRef}>
+    <footer className="footer" id="contact" ref={sectionRef}>
       <svg
         className="footer-top-border"
         viewBox="0 0 1440 100"
@@ -53,12 +56,15 @@ const Footer = () => {
 
       <div className="footer-main">
         <div className="footer-col footer-brand">
-          <a href="#home" className="footer-logo">
-            Fruitivo
-            <span>.</span>
-            <svg className="footer-logo-leaf" width="18" height="18" viewBox="0 0 24 24" fill="none">
-              <path d="M4 20c0-8 6-14 14-14 0 8-6 14-14 14Z" fill="#4CAF50" />
-            </svg>
+          <a
+            href="#home"
+            className="footer-logo"
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+          >
+            <img src="/images/logo-horizontal.png" alt="Fragria — A Scent For Every Story" className="footer-logo-img" />
           </a>
           <p>Nature&apos;s organic fragrance, crafted in small batches.</p>
           <SocialIcons className="footer-socials" />
@@ -69,11 +75,27 @@ const Footer = () => {
           <ul>
             {perfumes.map((p) => (
               <li key={p.id}>
-                <a href="#best-sellers">{p.name}</a>
+                <button
+                  className="footer-nav-btn"
+                  onClick={() => {
+                    const el = document.getElementById('best-sellers')
+                    if (el) el.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                >
+                  {p.name}
+                </button>
               </li>
             ))}
             <li>
-              <a href="#best-sellers">All Fragrances</a>
+              <button
+                className="footer-nav-btn"
+                onClick={() => {
+                  const el = document.getElementById('best-sellers')
+                  if (el) el.scrollIntoView({ behavior: 'smooth' })
+                }}
+              >
+                All Fragrances
+              </button>
             </li>
           </ul>
         </div>
@@ -82,13 +104,37 @@ const Footer = () => {
           <h4>Company</h4>
           <ul>
             <li>
-              <a href="#home">About Us</a>
+              <button
+                className="footer-nav-btn"
+                onClick={() => {
+                  const el = document.getElementById('about')
+                  if (el) el.scrollIntoView({ behavior: 'smooth' })
+                }}
+              >
+                About Us
+              </button>
             </li>
             <li>
-              <a href="#reviews">Reviews</a>
+              <button
+                className="footer-nav-btn"
+                onClick={() => {
+                  const el = document.getElementById('reviews')
+                  if (el) el.scrollIntoView({ behavior: 'smooth' })
+                }}
+              >
+                Reviews
+              </button>
             </li>
             <li>
-              <a href="#contact">Contact</a>
+              <button
+                className="footer-nav-btn"
+                onClick={() => {
+                  const el = document.getElementById('contact')
+                  if (el) el.scrollIntoView({ behavior: 'smooth' })
+                }}
+              >
+                Contact
+              </button>
             </li>
           </ul>
         </div>
@@ -97,20 +143,35 @@ const Footer = () => {
           <h4>Help</h4>
           <ul>
             <li>
-              <a href="#contact">Shipping</a>
+              <button
+                className="footer-nav-btn"
+                onClick={() => openModal('help', { tab: 'shipping' })}
+              >
+                Shipping
+              </button>
             </li>
             <li>
-              <a href="#contact">Returns</a>
+              <button
+                className="footer-nav-btn"
+                onClick={() => openModal('help', { tab: 'returns' })}
+              >
+                Returns
+              </button>
             </li>
             <li>
-              <a href="#contact">FAQ</a>
+              <button
+                className="footer-nav-btn"
+                onClick={() => openModal('help', { tab: 'faq' })}
+              >
+                FAQ
+              </button>
             </li>
           </ul>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Fruitivo. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Fragria. All rights reserved.</p>
       </div>
     </footer>
   )

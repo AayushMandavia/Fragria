@@ -23,26 +23,20 @@
 }
 
 .loader-logo {
-  position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  font-family: var(--font-body);
-  font-size: 2rem;
-  font-weight: 600;
-  color: #fff;
+  justify-content: center;
   opacity: 0;
   animation: loader-fade-in 0.6s ease 0.1s forwards;
 }
 
-.loader-logo span {
-  color: #4caf50;
-}
-
-.loader-logo-leaf {
-  position: absolute;
-  top: -10px;
-  right: -18px;
-  transform: rotate(20deg);
+.loader-logo-img {
+  height: 96px;
+  width: auto;
+  max-width: 200px;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.5));
 }
 
 .loader-bar {

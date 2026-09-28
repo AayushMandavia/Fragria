@@ -16,7 +16,7 @@ const Testimonial = () => {
   ])
 
   return (
-  <section className="testimonial" ref={sectionRef}>
+  <section className="testimonial" id="about" ref={sectionRef}>
     <div className="testimonial-inner">
       <div className="testimonial-quote">
         <svg className="testimonial-mark" width="52" height="40" viewBox="0 0 36 28" fill="none">
@@ -33,7 +33,7 @@ const Testimonial = () => {
         </div>
 
         <p>
-          Fruitivo completely changed my fragrance routine. The oils feel
+          Fragria completely changed my fragrance routine. The oils feel
           real, the scent lasts all day, and I finally found bottles
           I&apos;m proud to leave out on my dresser.
         </p>

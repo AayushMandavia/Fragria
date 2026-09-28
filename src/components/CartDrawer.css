@@ -1,0 +1,618 @@
+/* Liquid Glass UI for Fragria Cart Drawer */
+
+.cart-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.cart-drawer {
+  width: 100%;
+  max-width: 450px;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+
+  /* Liquid Glass Surface */
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 100%
+    ),
+    radial-gradient(circle at 15% 15%, rgba(138, 18, 32, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(220, 90, 130, 0.16) 0%, transparent 55%),
+    rgba(16, 14, 18, 0.78);
+
+  backdrop-filter: blur(40px) saturate(190%) contrast(105%);
+  -webkit-backdrop-filter: blur(40px) saturate(190%) contrast(105%);
+
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    -20px 0 60px rgba(0, 0, 0, 0.75),
+    inset 1px 0 0 rgba(255, 255, 255, 0.22),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25);
+
+  animation: slideInRight 0.34s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Glass Header */
+.cart-header {
+  padding: 22px 26px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cart-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-title-wrap h3 {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: #fff;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.cart-header-icon {
+  color: #4caf50;
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.6));
+}
+
+.cart-count-pill {
+  background: linear-gradient(135deg, rgba(220, 30, 60, 0.88), rgba(138, 18, 32, 0.95));
+  border: 1px solid rgba(255, 120, 140, 0.45);
+  box-shadow: 0 2px 10px rgba(220, 30, 60, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.cart-close-btn {
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 1.05rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.cart-close-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: rotate(90deg) scale(1.05);
+}
+
+/* Liquid Shipping Meter */
+.cart-shipping-meter {
+  padding: 16px 26px;
+  background: rgba(255, 255, 255, 0.025);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.shipping-meter-text {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.free-shipping-unlocked {
+  color: #81c784;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.4));
+}
+
+.shipping-progress-bar {
+  height: 6px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+  border-radius: 999px;
+  overflow: hidden;
+  padding: 1px;
+}
+
+.shipping-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff4d6d, #f72585 50%, #4caf50 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 14px rgba(76, 175, 80, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Items List */
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Custom Scrollbar for Liquid Glass */
+.cart-items::-webkit-scrollbar {
+  width: 6px;
+}
+.cart-items::-webkit-scrollbar-track {
+  background: transparent;
+}
+.cart-items::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+.cart-items::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.cart-empty-state {
+  margin: auto;
+  text-align: center;
+  max-width: 290px;
+  padding: 50px 0;
+}
+
+.cart-empty-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 8px 24px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.cart-empty-state h4 {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.cart-empty-state p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.cart-shop-now-btn {
+  background: linear-gradient(135deg, rgba(200, 24, 48, 0.9), rgba(138, 18, 32, 0.95));
+  border: 1px solid rgba(255, 120, 140, 0.35);
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(138, 18, 32, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.25s ease;
+}
+
+.cart-shop-now-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(138, 18, 32, 0.65);
+}
+
+/* Floating Glass Item Card */
+.cart-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.cart-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 14px 38px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+/* Glass Pedestal for Bottle */
+.cart-item-media {
+  width: 76px;
+  height: 84px;
+  background: radial-gradient(
+    circle at 50% 35%,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.25),
+    0 6px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+.cart-item-media img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.cart-item:hover .cart-item-media img {
+  transform: scale(1.08) rotate(-1deg);
+}
+
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cart-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cart-item-name {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.cart-item-remove {
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cart-item-remove:hover {
+  color: #ff5252;
+  background: rgba(255, 82, 82, 0.15);
+  border-color: rgba(255, 82, 82, 0.4);
+  transform: scale(1.1);
+}
+
+.cart-item-meta {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 3px;
+}
+
+.cart-item-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* Glass Quantity Capsule */
+.cart-qty-ctrl {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.16), 0 2px 8px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 999px;
+  padding: 3px 8px;
+  gap: 10px;
+}
+
+.cart-qty-ctrl button {
+  color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.cart-qty-ctrl button:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+.cart-qty-ctrl span {
+  font-size: 0.84rem;
+  font-weight: 600;
+  min-width: 14px;
+  text-align: center;
+}
+
+.cart-item-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+/* Liquid Glass Footer */
+.cart-footer {
+  padding: 22px 26px;
+  background: linear-gradient(
+    180deg,
+    rgba(22, 18, 22, 0.7) 0%,
+    rgba(12, 10, 14, 0.95) 100%
+  );
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cart-promo-form {
+  width: 100%;
+}
+
+/* Liquid Glass Input Capsule */
+.cart-promo-input-wrap {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 999px;
+  padding: 5px 6px 5px 16px;
+  gap: 8px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cart-promo-input-wrap:focus-within {
+  border-color: rgba(255, 120, 140, 0.5);
+  box-shadow:
+    0 0 16px rgba(180, 20, 40, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cart-promo-icon {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+}
+
+.cart-promo-input-wrap input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 0.84rem;
+  font-family: var(--font-body);
+  outline: none;
+}
+
+.cart-promo-input-wrap input::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.cart-promo-input-wrap button {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.07) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: #fff;
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+}
+
+.cart-promo-input-wrap button:hover {
+  background: #4caf50;
+  border-color: #4caf50;
+  box-shadow: 0 0 14px rgba(76, 175, 80, 0.5);
+  color: #fff;
+}
+
+.cart-promo-error {
+  font-size: 0.76rem;
+  color: #ff6b6b;
+  margin-top: 6px;
+  padding-left: 14px;
+}
+
+.cart-active-promo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(76, 175, 80, 0.12);
+  border: 1px solid rgba(76, 175, 80, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #81c784;
+}
+
+.cart-active-promo button {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.76rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cart-active-promo button:hover {
+  color: #fff;
+}
+
+.cart-summary-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.86rem;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.summary-discount {
+  color: #81c784;
+}
+
+.summary-total {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+/* Liquid Gemstone Checkout Button */
+.cart-checkout-btn {
+  background: linear-gradient(
+    135deg,
+    rgba(210, 24, 52, 0.95) 0%,
+    rgba(145, 18, 35, 0.96) 50%,
+    rgba(95, 10, 22, 0.98) 100%
+  );
+  border: 1px solid rgba(255, 140, 160, 0.5);
+  color: #fff;
+  padding: 15px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 10px 30px rgba(180, 20, 40, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
+}
+
+/* Specular Shimmer Reflection */
+.cart-checkout-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  transition: none;
+}
+
+.cart-checkout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 40px rgba(180, 20, 40, 0.7),
+    inset 0 1px 3px rgba(255, 255, 255, 0.65);
+}
+
+.cart-checkout-btn:hover::after {
+  left: 200%;
+  transition: left 0.75s ease-in-out;
+}
