@@ -1,6 +1,6 @@
 # Fragria — A Scent For Every Story
 
-> A modern luxury single-page e-commerce website for artisanal organic fragrances, featuring **Liquid Glass UI**, fluid scroll choreography, and an interactive small-batch scent collection.
+> A modern luxury single-page e-commerce website for artisanal organic fragrances, featuring fluid scroll choreography and an interactive small-batch scent collection.
 
 ![Fragria Preview](public/images/logo-horizontal.png)
 
@@ -10,8 +10,8 @@
 
 - **Single-Page Luxury Experience**: Seamless continuous in-page scrolling with Lenis smooth scroll and zero page reloads.
 - **Scroll-Scrubbed Bottle Choreography**: Real-time GSAP ScrollTrigger animations that fly the active fragrance bottle down into the collection grid as the user scrolls.
-- **Liquid Glass UI**: Ultra-refined frosted translucent panels, specular glow, and fluid glass drawer animations.
-- **Slide-Out Liquid Glass Cart**:
+- **Modern Luxury Aesthetics**: Clean frosted translucent panels, warm ambient glow, and fluid drawer animations.
+- **Slide-Out Shopping Bag & Cart**:
   - Live bag counter and instant slide-out cart drawer.
   - Interactive coupon codes (e.g. `FRAGRIA20` for 20% off).
   - Free shipping progress bar (orders over $75).
@@ -31,7 +31,7 @@
 - **Framework**: [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
 - **Animation**: [Framer Motion](https://www.framer.com/motion/) & [GSAP](https://gsap.com/) + ScrollTrigger
 - **Smooth Scroll**: [@studio-freight/lenis](https://github.com/studio-freight/lenis)
-- **Styling**: Vanilla CSS with custom Liquid Glass design tokens & responsive grid
+- **Styling**: Vanilla CSS with custom modern design tokens & responsive grid
 - **Icons**: React Icons + handcrafted SVG vectors
 
 ---
